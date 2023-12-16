@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class UserAccount {
+    public static String table = "auth_user_accounts";
     private String id;
     private String name;
     private String email;
