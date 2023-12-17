@@ -2,11 +2,8 @@ package co.sribhakti.api.auth.ctrl;
 
 import co.sribhakti.api.auth.model.PhoneMapping;
 import co.sribhakti.api.auth.model.UserAccount;
-import co.sribhakti.api.common.ErrorCodes;
-import co.sribhakti.api.common.ExceptionUtils;
+import co.sribhakti.api.common.*;
 
-import co.sribhakti.api.common.SriBhaktiApiResponse;
-import co.sribhakti.api.common.SriBhaktiErrorResponse;
 import com.google.api.core.ApiFuture;
 import com.google.api.gax.rpc.AlreadyExistsException;
 import com.google.cloud.firestore.DocumentReference;
@@ -47,7 +44,8 @@ public class RegisterCtrl {
         PhoneMapping ph = new PhoneMapping(r.phone);
         UserAccount userAccount = new UserAccount();
 
-        String otp = "1234"; // TODO : remove hardcode, add otp generator
+        OtpGenerator otpGenerator = new OtpGenerator(4);
+        String otp = otpGenerator.generateOtp();
         long otpExpire = System.currentTimeMillis() + (5 * 60 * 1000);
 
         ph.setId(uniqueID);
