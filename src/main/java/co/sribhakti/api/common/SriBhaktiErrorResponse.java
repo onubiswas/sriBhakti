@@ -52,6 +52,16 @@ public class SriBhaktiErrorResponse {
             return new SriBhaktiErrorResponse(this.message, this.errors, this.appcode, this.statusCode);
         }
 
+        public SriBhaktiErrorResponseBuilder statusCode(final HttpStatusCode statusCode) {
+            this.statusCode = statusCode;
+            return this;
+        }
+        public SriBhaktiErrorResponseBuilder message(final String message) {
+            this.message = message;
+            return this;
+        }
+
+
         public String toString() {
             return "SamitiErrorResponse.SamitiErrorResponseBuilder(message=" + this.message + ", errors=" + this.errors + ", appcode=" + this.appcode + ", statusCode=" + this.statusCode + ")";
         }
