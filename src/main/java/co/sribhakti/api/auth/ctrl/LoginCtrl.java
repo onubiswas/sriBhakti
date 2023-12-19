@@ -28,8 +28,8 @@ public class LoginCtrl {
     @Autowired
     ExceptionUtils exceptionUtils;
 
-    static JwtTokenizer jwtTokenizer;
-
+    @Autowired
+    JwtTokenizer jwtTokenizer;
 
     public  SriBhaktiApiResponse run(LoginRequest body) throws ExecutionException, InterruptedException {
 
@@ -74,7 +74,7 @@ public class LoginCtrl {
 
             PhoneMapping pm = doc.toObject(PhoneMapping.class);
             // check
-            if(body.getOtp() != pm.getOtp()) {
+            if(!body.getOtp().equals(pm.getOtp())) {
                 return SriBhaktiErrorResponse.builder()
                         .message("otp does not match")
                         .appcode(ErrorCodes.INVALID_OTP)
