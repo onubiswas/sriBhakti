@@ -22,15 +22,16 @@ import java.util.logging.Logger;
 public class LoginCtrl {
 
     @Autowired
-    static
     Firestore db;
     static Logger log = Logger.getLogger(LoginCtrl.class.getName());
-    private static ExceptionUtils exceptionUtils;
+
+    @Autowired
+    ExceptionUtils exceptionUtils;
 
     static JwtTokenizer jwtTokenizer;
 
 
-    public static SriBhaktiApiResponse run(LoginRequest body) throws ExecutionException, InterruptedException {
+    public  SriBhaktiApiResponse run(LoginRequest body) throws ExecutionException, InterruptedException {
 
         SriBhaktiErrorResponse res = validate(body.getPhone());
         if(res != null) {
@@ -41,7 +42,7 @@ public class LoginCtrl {
 
     }
 
-    private static SriBhaktiApiResponse login(LoginRequest body) throws ExecutionException, InterruptedException {
+    private  SriBhaktiApiResponse login(LoginRequest body) throws ExecutionException, InterruptedException {
         SriBhaktiErrorResponse response = checkOtp(body);
         if(response != null) {
             return new SriBhaktiApiResponse(response);
@@ -63,7 +64,7 @@ public class LoginCtrl {
         return new SriBhaktiApiResponse(loginResponse);
     }
 
-    private static SriBhaktiErrorResponse checkOtp(LoginRequest body) throws ExecutionException, InterruptedException {
+    private  SriBhaktiErrorResponse checkOtp(LoginRequest body) throws ExecutionException, InterruptedException {
         log.info("otp validation start");
         try {
             ApiFuture<DocumentSnapshot> promise = db.collection(PhoneMapping.table)
