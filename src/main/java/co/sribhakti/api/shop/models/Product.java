@@ -2,7 +2,6 @@ package co.sribhakti.api.shop.models;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.stereotype.Component;
 
 
 @Data
@@ -19,5 +18,4 @@ public class Product {
     Integer availableQuantity;
 
     private String image;
-
 }
