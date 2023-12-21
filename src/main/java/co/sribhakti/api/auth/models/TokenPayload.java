@@ -1,4 +1,4 @@
-package co.sribhakti.api.auth.model;
+package co.sribhakti.api.auth.models;
 
 import lombok.Data;
 

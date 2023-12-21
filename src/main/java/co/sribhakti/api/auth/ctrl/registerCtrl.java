@@ -1,7 +1,7 @@
 package co.sribhakti.api.auth.ctrl;
 
-import co.sribhakti.api.auth.model.PhoneMapping;
-import co.sribhakti.api.auth.model.UserAccount;
+import co.sribhakti.api.auth.models.PhoneMapping;
+import co.sribhakti.api.auth.models.UserAccount;
 import co.sribhakti.api.common.*;
 
 import com.google.api.core.ApiFuture;

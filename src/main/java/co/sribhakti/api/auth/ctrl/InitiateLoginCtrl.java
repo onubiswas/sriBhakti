@@ -1,20 +1,14 @@
 package co.sribhakti.api.auth.ctrl;
 
-import co.sribhakti.api.auth.handler.InitiateLoginHandler;
-import co.sribhakti.api.auth.model.PhoneMapping;
-import co.sribhakti.api.auth.model.UserAccount;
+import co.sribhakti.api.auth.models.PhoneMapping;
 import co.sribhakti.api.common.*;
 import com.google.api.core.ApiFuture;
-import com.google.api.gax.rpc.AlreadyExistsException;
 import com.google.api.gax.rpc.NotFoundException;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

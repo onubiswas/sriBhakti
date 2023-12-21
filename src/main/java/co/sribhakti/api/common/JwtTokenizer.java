@@ -1,6 +1,6 @@
 package co.sribhakti.api.common;
 
-import co.sribhakti.api.auth.model.TokenPayload;
+import co.sribhakti.api.auth.models.TokenPayload;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;

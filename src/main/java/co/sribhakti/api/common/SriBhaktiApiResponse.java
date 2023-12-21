@@ -1,6 +1,7 @@
 package co.sribhakti.api.common;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 

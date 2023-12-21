@@ -1,7 +1,7 @@
 package co.sribhakti.api.auth.ctrl;
 
-import co.sribhakti.api.auth.model.PhoneMapping;
-import co.sribhakti.api.auth.model.TokenPayload;
+import co.sribhakti.api.auth.models.PhoneMapping;
+import co.sribhakti.api.auth.models.TokenPayload;
 import co.sribhakti.api.common.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.api.core.ApiFuture;
