@@ -1,12 +1,11 @@
 package co.sribhakti.api.shop.ctrl;
 
 
+import co.sribhakti.api.common.ExceptionUtils;
 import co.sribhakti.api.common.SriBhaktiApiResponse;
 import co.sribhakti.api.shop.models.Product;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.*;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.extern.java.Log;
@@ -26,44 +25,38 @@ public class ProductListCtrl {
     @Autowired
     Firestore db;
 
-
-
     public SriBhaktiApiResponse run() {
 
         ArrayList<Product> productList = new ArrayList<>();
 
         log.info("fetching product list from db");
 
-        // fetch product list from db
-        ApiFuture<DocumentSnapshot> query= db.collection(Product.table).document().get();
-
         try {
-            DocumentSnapshot querySnapshot = query.get();
+            // Reference to the "product" collection in Firestore
+            CollectionReference productsCollection = db.collection("product");
+
+            // Fetch all documents in the "product" collection
+            ApiFuture<QuerySnapshot> querySnapshot = productsCollection.get();
+
+            // Retrieve the documents and map them to Product objects
+            for (QueryDocumentSnapshot document : querySnapshot.get().getDocuments()) {
+                Product product = document.toObject(Product.class);
+                productList.add(product);
+            }
+
+            log.info("Product list fetched successfully");
+
         } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+            log.info("Failed to fetch product list: {}");
+            // Handle exceptions
         }
-
-
-
-
-//
-//        productList.add(new Product().setId("1").setName("first product")); // todo add other fields
-//        productList.add(new Product().setId("2").setName("second product")); // todo add other fields
-//        productList.add(new Product().setId("3").setName("third product")); // todo add other fields
-//        productList.add(new Product().setId("4").setName("fourth product")); // todo add other fields
-
 
         ProductListCtrl.productListResponse res = new ProductListCtrl.productListResponse();
         res.setProductList(productList);
         res.setCount(productList.size());
 
-
         return new SriBhaktiApiResponse(res);
     }
-
-
-
-
 
     @Data
     public static class productListResponse {
@@ -72,7 +65,4 @@ public class ProductListCtrl {
         int count;
 
     }
-
-
-
 }
