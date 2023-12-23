@@ -35,13 +35,13 @@ public class CreateProductCtrl {
 
         log.info("saving product in the database");
 
-        ApiFuture<WriteResult> res = db.collection(Product.table).document().create(product);
+        ApiFuture<WriteResult> res = db.collection(Product.table).document(product.getId()).create(product);
 
 
         log.info("saved successfully in database");
 
 
-        productResponse rr = new productResponse("ok");
+        productResponse rr = new productResponse(uniqueID);
         return new SriBhaktiApiResponse(rr);
     }
 
@@ -56,9 +56,9 @@ public class CreateProductCtrl {
     }
 
     class productResponse {
-        String status;
-        productResponse(String status) {
-            this.status = status;
+        String id;
+        productResponse(String id) {
+            this.id = id;
         }
     }
 
